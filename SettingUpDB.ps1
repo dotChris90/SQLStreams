@@ -1,6 +1,26 @@
 using namespace System.Data.SqlClient;
 using namespace System.Data.SqlTypes;
 
+# Do this in SSMS or Powershell SQL Console
+
+#CREATE DATABASE Archive
+#ON
+#PRIMARY ( NAME = Arch1,
+#    FILENAME = 'c:\data\archdat1.mdf'),
+#FILEGROUP FileStreamGroup1 CONTAINS FILESTREAM( NAME = Arch3,
+#    FILENAME = 'c:\data\filestream1')
+#LOG ON  ( NAME = Archlog1,
+#    FILENAME = 'c:\data\archlog1.ldf')
+#GO
+
+# CREATE TABLE Archive.dbo.Records
+#(
+#	[Id] [uniqueidentifier] ROWGUIDCOL NOT NULL UNIQUE,
+#	[SerialNumber] INTEGER UNIQUE,
+#	[Chart] VARBINARY(MAX) FILESTREAM NULL
+#)
+#GO
+
 # ensure there is a connection
 $connStr = 'server=L0146\SQLEXPRESS;Trusted_Connection=True'
 $connection = [SqlConnection]::new()
